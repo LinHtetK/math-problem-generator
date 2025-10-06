@@ -67,61 +67,66 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 p-4">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6">
-        <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 px-4 py-8 sm:py-12 md:py-16">
+      <div className="w-full max-w-md sm:max-w-lg lg:max-w-xl bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 transition-all duration-300">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-center text-blue-700 mb-8">
           🧠 Math Problem Generator
         </h1>
 
+        {/* Generate button */}
         <button
           onClick={generateProblem}
           disabled={loadingProblem}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg mb-4 transition disabled:opacity-50"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg mb-6 transition-all duration-200 disabled:opacity-50 text-base sm:text-lg"
         >
           {loadingProblem ? "Generating..." : "Generate New Problem"}
         </button>
 
+        {/* Problem display */}
         {session && (
-          <div className="mb-4">
-            <p className="text-gray-800 text-lg font-medium mb-2">
+          <div className="mb-6">
+            <p className="text-gray-800 text-lg font-semibold mb-2">
               📌 Problem:
             </p>
-            <p className="bg-gray-100 p-3 rounded-lg text-gray-700 whitespace-pre-line">
+            <p className="bg-gray-100 p-4 sm:p-5 rounded-lg text-gray-700 whitespace-pre-line text-sm sm:text-base">
               {session.problem_text}
             </p>
           </div>
         )}
 
+        {/* Answer input */}
         {session && (
-          <div className="mb-4">
-            <label className="block mb-1 text-gray-700 font-medium">
+          <div className="mb-6">
+            <label className="block mb-2 text-gray-700 font-medium text-base sm:text-lg">
               ✏️ Your Answer:
             </label>
             <input
               type="number"
               value={userAnswer}
               onChange={(e) => setUserAnswer(e.target.value)}
-              className="w-full border rounded-lg p-2 focus:ring-2 focus:ring-indigo-500 outline-none text-black"
+              className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500 outline-none text-gray-900 text-base sm:text-lg"
               placeholder="Enter your answer"
             />
           </div>
         )}
 
+        {/* Submit button */}
         {session && (
-          <div className="text-center mb-4">
+          <div className="text-center mb-6">
             <button
               onClick={submitAnswer}
               disabled={loadingSubmit}
-              className="px-4 py-2 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 disabled:opacity-50"
+              className="w-full sm:w-auto px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 disabled:opacity-50 transition-all duration-200 text-base sm:text-lg"
             >
               {loadingSubmit ? "Submitting..." : "Submit Answer"}
             </button>
           </div>
         )}
 
+        {/* Feedback message */}
         {feedback && (
           <div
-            className={`p-3 rounded-lg text-sm whitespace-pre-line ${
+            className={`p-4 rounded-lg text-sm sm:text-base whitespace-pre-line text-center font-medium ${
               isCorrect
                 ? "bg-green-100 text-green-800"
                 : "bg-yellow-100 text-yellow-800"
@@ -131,8 +136,9 @@ export default function Home() {
           </div>
         )}
 
+        {/* Error message */}
         {error && (
-          <div className="p-3 mt-3 bg-red-100 text-red-800 rounded-lg text-sm">
+          <div className="p-4 mt-4 bg-red-100 text-red-800 rounded-lg text-sm sm:text-base text-center font-medium">
             ❌ {error}
           </div>
         )}
