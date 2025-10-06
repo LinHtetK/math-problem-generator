@@ -18,7 +18,7 @@ Write a short personalized feedback message (2-4 sentences) that:
 2) says whether the answer is correct, 
 3) gives one concise tip or next step. Return plain text only.`;
 
-  const resp = await fetch(
+  const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
     {
       method: "POST",
@@ -35,12 +35,12 @@ Write a short personalized feedback message (2-4 sentences) that:
     }
   );
 
-  if (!resp.ok) {
-    const text = await resp.text();
+  if (!res.ok) {
+    const text = await res.text();
     throw new Error(`AI error: ${text}`);
   }
 
-  const body = await resp.json();
+  const body = await res.json();
   const textOutput = body.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
   return String(textOutput).trim();
 }

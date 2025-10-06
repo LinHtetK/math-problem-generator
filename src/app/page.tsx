@@ -25,10 +25,10 @@ export default function Home() {
     setLoadingProblem(true);
 
     try {
-      const resp = await fetch("/api/math-problem", { method: "POST" });
-      const data = await resp.json();
+      const res = await fetch("/api/math-problem", { method: "POST" });
+      const data = await res.json();
 
-      if (!resp.ok) throw new Error(data.error || "Failed to generate problem");
+      if (!res.ok) throw new Error(data.error || "Failed to generate problem");
       setSession(data.session);
     } catch (err: any) {
       console.error(err);
@@ -44,7 +44,7 @@ export default function Home() {
     setError(null);
 
     try {
-      const resp = await fetch("/api/math-problem/submit", {
+      const res = await fetch("/api/math-problem/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -53,8 +53,8 @@ export default function Home() {
         }),
       });
 
-      const data = await resp.json();
-      if (!resp.ok) throw new Error(data.error || "Failed to submit answer");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to submit answer");
 
       setFeedback(data.submission.feedback_text);
       setIsCorrect(data.submission.is_correct);

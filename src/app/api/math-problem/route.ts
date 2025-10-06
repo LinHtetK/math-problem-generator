@@ -18,7 +18,7 @@ Return ONLY valid JSON with these fields:
 Do not add any explanations, code blocks, or commentary.
 `;
 
-  const resp = await fetch(
+  const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
     {
       method: "POST",
@@ -39,12 +39,12 @@ Do not add any explanations, code blocks, or commentary.
     }
   );
 
-  if (!resp.ok) {
-    const text = await resp.text();
+  if (!res.ok) {
+    const text = await res.text();
     throw new Error(`AI error: ${text}`);
   }
 
-  const raw = await resp.json();
+  const raw = await res.json();
 
   const textOutput = raw?.problem_text
     ? raw
