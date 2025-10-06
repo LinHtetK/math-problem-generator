@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 p-4">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-100 to-blue-300 p-4">
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-lg p-6">
         <h1 className="text-2xl font-bold text-center text-blue-700 mb-6">
           🧠 Math Problem Generator
@@ -137,6 +137,6 @@ export default function Home() {
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

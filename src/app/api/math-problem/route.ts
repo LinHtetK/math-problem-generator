@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/app/lib/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 
 async function callAIGenerateProblem(): Promise<{
   problem_text: string;
